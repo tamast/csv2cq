@@ -36,8 +36,8 @@ if (!('csv' in config &&'transform' in config)) {
 // Import /////////////////////////////////////////////////////////////////////
 
 csv()
-    .fromPath(config.csv)
-    .on('data', function (contentArray, index) {
+    .from.stream(fs.createReadStream(__dirname+'/content.csv'))
+    .on('record', function (contentArray, index) {
         // The first line contains the variable keys
         if (index == 0) {
             keys = contentArray;
